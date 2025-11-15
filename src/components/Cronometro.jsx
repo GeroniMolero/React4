@@ -1,29 +1,44 @@
 import { useEffect, useState, useRef } from "react";
 
-export default function Cronometro(){
-    const[segundos,setSegundos]=useState(0);
-    const[activo,setActivo]=useState(false);
-    const intervaloRef = useRef(null);
+export default function Cronometro() {
+  const [segundos, setSegundos] = useState(0);
+  const [activo, setActivo] = useState(false);
+  const intervaloRef = useRef(null);
 
-    useEffect(()=>{
-        if(activo){
-            intervaloRef.current = setInterval(()=>{
-                setSegundos((prev) => prev +1)
-            },1000);
-        }else{
-            clearInterval(intervalo);
-        }
-        return() =>{
-            clearInterval(intervalo);
-            console.log("Cronometro desactivado")
-        }
-    },[activo]);
+  useEffect(() => {
+    if (activo) {
+      clearInterval(intervaloRef.current); 
+      intervaloRef.current = setInterval(() => {
+        setSegundos(s => s + 0.5);
+      }, 500);
+    } else {
+      clearInterval(intervaloRef.current);
+    }
 
-    return(
-        <div>
-            <p>Contador: {segundos}</p>
-            <button onClick={() => setActivo(true)}>Iniciar</button>
-            <button onClick={() => setActivo(false)}>Detener</button>
-        </div>
-    )
+    return () => {
+      clearInterval(intervaloRef.current);
+      console.log("Cronómetro desmontado");
+    };
+  }, [activo]);
+
+  const iniciar = () => {
+    setSegundos(0);
+    setActivo(true);
+  };
+
+  const pausarReanudar = () => {
+    setActivo(prev => !prev);
+  };
+
+  return (
+    <div>
+      <p>Contador: {Math.floor(segundos)}</p>
+
+      <button onClick={iniciar}>Iniciar</button>
+
+      <button onClick={pausarReanudar}>
+        {activo ? "Pausar" : "Reanudar"}
+      </button>
+    </div>
+  );
 }

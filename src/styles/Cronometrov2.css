@@ -1,0 +1,55 @@
+.cronometro-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+  font-family: "Roboto", sans-serif;
+}
+
+.cronometro-display {
+  font-size: 3.5rem;
+  font-weight: 600;
+  background: #111;
+  color: #0f0;
+  padding: 20px 40px;
+  border-radius: 20px;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+  box-shadow: 0px 0px 20px rgba(0,255,0,0.3);
+}
+
+.cronometro-botones {
+  display: flex;
+  gap: 15px;
+}
+
+.btn {
+  padding: 12px 25px;
+  border-radius: 30px;
+  border: none;
+  font-size: 1.1rem;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.iniciar {
+  background: #0066ff;
+}
+
+.iniciar:hover {
+  background: #0052cc;
+}
+
+.reiniciar {
+  background: #cc0000;
+}
+
+.reiniciar:hover {
+  background: #a30000;
+}
